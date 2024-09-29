@@ -13,7 +13,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background: #efbcd5;
-  background-image: url("basic\ bg.png");
+  background-image: url("docbg.png");
   width: 100%;
   overflow: hidden;
 }
@@ -30,7 +30,7 @@ body {
 .ring i {
   position: absolute;
   inset: 0;
-  border: 2px solid #fff;
+  border: 2px solid #2362c7;
   transition: 0.5s;
 }
 
@@ -87,7 +87,7 @@ body {
 
 .login h2 {
   font-size: 2em;
-  color: #fff;
+  color: #1a1676;
 }
 
 .login .inputBx {
@@ -100,10 +100,10 @@ body {
   width: 100%;
   padding: 12px 20px;
   background: transparent;
-  border: 2px solid #fff;
+  border: 2px solid #652ad2;
   border-radius: 40px;
   font-size: 1.2em;
-  color: #fff;
+  color: #4c61e8;
   box-shadow: none;
   outline: none;
 }
@@ -117,7 +117,7 @@ body {
 }
 
 .login .inputBx input::placeholder {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(123, 101, 231, 0.75);
 }
 
 .login .links {
@@ -130,6 +130,6 @@ body {
 }
 
 .login .links a {
-  color: #fff;
+  color: #7b55f8;
   text-decoration: none;
 }

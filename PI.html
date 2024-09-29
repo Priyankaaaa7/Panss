@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Dancing+Script:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-image: url("basic\ bg.png");
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #d8b4f0;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            color: #da2e9e;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="number"],
+        form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffcbdb;
+            outline: none;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form input[type="number"]:focus,
+        form select:focus {
+            border-color: #ff7f9d;
+        }
+
+        .allergies-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .allergies-container input {
+            flex: 1;
+        }
+
+        .add-allergy-btn {
+            background-color: #ff7f9d;
+            border: none;
+            color: white;
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .add-allergy-btn:hover {
+            background-color: #ff4e76;
+        }
+
+        .submit-btn {
+            background-color: #ab4f6a;
+            color: #fbf8f8;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #e2c7cd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Personal Details</h1>
+        <form id="pregnancy-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Enter your age" required>
+
+            <label>Allergies</label>
+            <div id="allergies-list">
+                <div class="allergies-container">
+                    <input type="text" placeholder="Enter allergy" name="allergies[]">
+                    <button type="button" class="add-allergy-btn" onclick="addAllergy()">+</button>
+                </div>
+            </div>
+
+            <label for="hospital">Hospital of Residence</label>
+            <input type="text" id="hospital" placeholder="Enter your hospital of residence">
+
+
+            <label for="doctor">Name of Doctor</label>
+            <input type="text" id="doctor" placeholder="Enter the name of your doctor">
+            <label for="doctor_ID">Doctor ID</label>
+            <input type="text" id="doctor_ID" placeholder="Enter the ID number of your doctor">
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to add another allergy input field
+        function addAllergy() {
+            const allergiesList = document.getElementById('allergies-list');
+            const newAllergyDiv = document.createElement('div');
+            newAllergyDiv.classList.add('allergies-container');
+            newAllergyDiv.innerHTML = `
+                <input type="text" placeholder="Enter allergy" name="allergies[]">
+                <button type="button" class="add-allergy-btn" onclick="addAllergy()">+</button>
+            `;
+            allergiesList.appendChild(newAllergyDiv);
+        }
+
+        // Form submission handling (example)
+        document.getElementById('pregnancy-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert("Form submitted!");
+        });
+    </script>
+
+</body>
+
+</html>

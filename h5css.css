@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    background-image: url("i.jpg");
+    /* Light background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #050505;
+}
+
+.urgent-care-button {
+    background-color: #f50494;
+    /* Urgent care color */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.urgent-care-button:hover {
+    background-color: #ff2e00;
+    /* Darker shade on hover */
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.notification {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    background-color: #e7f3fe;
+
+    padding: 10px;
+    border: 1px solid #a3d1e0;
+    border-radius: 5px;
+}
