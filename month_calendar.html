@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image:url("preg3.png"); /* Add your image here */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Adjust text color for better visibility */
+        }
+        h1 {
+            text-align: center;
+            color: #a13172;
+            font-size: 10em; 
+            margin-bottom: 80px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .day {
+            background: rgba(238, 89, 171, 0.589); /* Semi-transparent background */
+            border: 4px solid #15138d;
+            border-radius: 5px;
+            padding: 10px;
+            position: relative;
+            min-height: 100px;
+            text-align: center;
+        }
+        .day h4 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .mood, .appointment {
+            margin-top: 10px;
+        }
+        .mood span {
+            cursor: pointer;
+            font-size: 2em;
+            margin: 0 5px;
+            transition: transform 0.2s;
+        }
+        .mood span:hover {
+            transform: scale(1.3);
+        }
+        .note-input {
+            margin-top: 10px;
+            font-size: 2em;
+        }
+        button {
+            background: #42354a;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            size: 3em;
+        }
+        button:hover {
+            background: #87e4e4;
+        }
+        .emoji-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pregnancy Calendar</h1>
+    <div class="calendar" id="calendar"></div>
+
+    <script>
+        const year = 2024; // Fixed to 2024
+        const month = new Date().getMonth(); // Default to current month
+
+        // Generate a calendar for the specified month and year
+        function generateCalendar() {
+            const calendarElement = document.getElementById('calendar');
+            calendarElement.innerHTML = ''; // Clear previous content
+
+            const date = new Date(year, month, 1);
+            const firstDay = date.getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Create empty slots for days before the first day of the month
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDiv = document.createElement('div');
+                calendarElement.appendChild(emptyDiv);
+            }
+
+            // Populate the calendar with days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day');
+
+                dayDiv.innerHTML = `
+                    <h4>${day}</h4>
+                    <div class="mood">
+                        <label>Mood:</label>
+                        <div class="emoji-container">
+                            <span onclick="setMood(${day}, '😊')">😊</span>
+                            <span onclick="setMood(${day}, '😢')">😢</span>
+                            <span onclick="setMood(${day}, '😕')">😕</span>
+                            <span onclick="setMood(${day}, '😴')">😴</span>
+                            <span onclick="setMood(${day}, '😍')">😍</span>
+                        </div>
+                        <input type="hidden" class="mood-input" value="">
+                    </div>
+                    <div class="appointment note-input">
+                        <label>Appointments:</label>
+                        <textarea rows="2" class="appointment-text" placeholder="Your appointment here..."></textarea>
+                    </div>
+                    <button onclick="saveInfo(${day})">Save</button>`;
+
+                calendarElement.appendChild(dayDiv);
+            }
+        }
+
+        function setMood(day, emoji) {
+            const dayDiv = document.querySelectorAll('.day')[day - 1];
+            const moodInput = dayDiv.querySelector('.mood-input');
+            moodInput.value = emoji;  // Store the emoji in the hidden input
+            alert(`Mood set for Day ${day}: ${emoji}`);
+        }
+
+        function saveInfo(day) {
+            const dayDiv = document.querySelectorAll('.day')[day - 1];
+            const mood = dayDiv.querySelector('.mood-input').value;
+            const appointment = dayDiv.querySelector('.appointment-text').value;
+
+            // Log the info to the console and display an alert
+            console.log(`Day ${day}: Mood - ${mood}, Appointment - ${appointment}`);
+            alert(`Saved for Day ${day}: Mood - ${mood}, Appointment - ${appointment}`);
+
+            // Display saved information
+            const moodDisplay = mood ? `Mood: ${mood}` : 'No mood selected';
+            const appointmentDisplay = appointment ? `Appointment: ${appointment}` : 'No appointment set';
+            dayDiv.innerHTML += `<p>${moodDisplay}</p><p>${appointmentDisplay}</p>`;
+        }
+
+        // Initialize the calendar
+        generateCalendar();
+    </script>
+</body>
+</html>
